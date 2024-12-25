@@ -12,4 +12,4 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir --upgrade -r requirements.txt
 
 # copy project
-COPY . .
+COPY ./app /app/

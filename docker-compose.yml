@@ -6,5 +6,7 @@ services:
     command: uvicorn app.main:app --host 0.0.0.0
     volumes:
       - .:/app
+    env_file:
+      - .env
     ports:
       - 8008:8000
