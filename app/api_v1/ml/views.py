@@ -1,14 +1,19 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends
+from sqlalchemy.ext.asyncio import AsyncSession
 
+from app.core.models import db_helper
 from app.analyser.cv_analiser import download_file, get_result
 from .schemas import UserSchema, CVSchema
+from app.crud import userprofile as crud_userprofile
+
 
 router = APIRouter(tags=["ML Model"])
 
 
 @router.get("/check/")
-def get_status():
-    return {"message": "ok"}
+async def get_status(session: AsyncSession = Depends(db_helper.sesion_getter)):
+    result = await crud_userprofile.test_connection(session=session)
+    return {"message": {"status": "ok", "Test connect database": bool(result)}}
 
 
 @router.post("/user/")
