@@ -5,3 +5,12 @@ services:
       - .env
     ports:
       - 8008:8000
+
+  db_pg:
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: testDb
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5433:5432"
