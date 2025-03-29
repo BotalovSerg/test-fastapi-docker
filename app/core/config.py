@@ -1,5 +1,16 @@
+import os
+from pathlib import Path
 from pydantic import BaseModel, PostgresDsn
 from pydantic_settings import BaseSettings, SettingsConfigDict
+
+
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
+SESSIONS_DIR = BASE_DIR / "tg_session"
+
+
+def get_session_path(phone: str) -> Path:
+    session_name = f"session_{phone}"
+    return SESSIONS_DIR / session_name
 
 
 class TelegramBot(BaseModel):
