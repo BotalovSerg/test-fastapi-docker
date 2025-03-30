@@ -127,12 +127,12 @@ async def verify_password(request: PasswordRequest):
         raise HTTPException(status_code=400, detail=str(e))
 
 
-# @router.get("/status")
-# async def auth_status(phone: str, api_id: str, api_hash: str):
-#     """Проверяет статус авторизации"""
-#     client = await get_client(phone, api_id, api_hash)
-#     is_auth = await client.is_user_authorized()
-#     return {"authorized": is_auth}
+@router.get("/status")
+async def auth_status(phone: str, api_id: str, api_hash: str):
+    """Проверяет статус авторизации"""
+    client = await get_client(phone, api_id, api_hash)
+    is_auth = await client.is_user_authorized()
+    return {"authorized": is_auth}
 
 
 # @router.post("/logout")
