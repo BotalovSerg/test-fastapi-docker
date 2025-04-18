@@ -135,45 +135,6 @@ async def auth_status(phone: str, api_id: str, api_hash: str):
     return {"authorized": is_auth}
 
 
-# @router.post("/logout")
-# async def logout(phone: str, api_id: str, api_hash: str):
-#     """Выход из аккаунта Telegram"""
-#     client = await get_client(phone, api_id, api_hash)
-#     await client.log_out()
-#     return {"message": "Вы вышли из Telegram"}
-
-
-# async def update_user_tg(db: AsyncSession, user):
-#     user_phone = f"+{user.phone}"
-
-#     try:
-#         # Ищем пользователя по телефону
-#         result = await db.execute(
-#             select(TgAuthAccount).where(TgAuthAccount.phone == user_phone)
-#         )
-#         account = result.scalars().first()  # Получаем список объектов
-
-#         if not account:
-#             print(f"Пользователь с номером {user_phone} не найден в БД.")
-#             return None
-
-#         # Обновляем данные найденных пользователей
-
-#         account.user_tg_id = str(user.id)
-#         account.first_name = user.first_name
-#         account.last_name = user.last_name if user.last_name else None
-#         account.username = user.username if user.username else None
-
-#         # Сохраняем изменения
-#         await db.commit()
-#         print(f"Обновлен Telegram-аккаунт для номера {user_phone}.")
-#         return True
-
-#     except SQLAlchemyError as e:
-#         print(f"Ошибка БД при обновлении Tg-аккаунтов для {user_phone}: {str(e)}")
-#         return None
-#     except Exception as e:
-#         print(
-#             f"Неизвестная ошибка при обновлении Tg-аккаунтов для {user_phone}: {str(e)}"
-#         )
-#         return None
+@router.get("vk-api-newsfeed")
+async def get_newsfeed_vk():
+    pass
